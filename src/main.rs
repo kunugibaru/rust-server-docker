@@ -3,7 +3,9 @@ use std::net::TcpListener;
 use std::thread;
 
 fn main() {
-    let listener = TcpListener::bind("localhost:8080").unwrap();
+    println!("TETE!");
+
+    let listener = TcpListener::bind("0.0.0.0:852").unwrap();
     for stream in listener.incoming() {
         let stream = stream.unwrap();
         println!("Received connection from {:?}", stream.peer_addr().unwrap());
@@ -11,6 +13,8 @@ fn main() {
             handle_connection(stream);
         });
     }
+
+
 }
 
 fn handle_connection(mut stream: std::net::TcpStream) {
